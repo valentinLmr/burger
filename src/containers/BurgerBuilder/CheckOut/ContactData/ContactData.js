@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../../../../components/UI/Button/Button';
 import style from './ContactData.module.css';
+import Spinner from '../../../../components/UI/Spiner/Spiner'
 import axios from '../../../../axios-order';
 
 class ContactData extends Component {
@@ -12,7 +13,8 @@ class ContactData extends Component {
             street:'',
             city:'',
             zipcode:''
-        }
+        },
+        loading:false
     } 
     orderHandler = (event) => {
         alert('You continue !');
@@ -34,22 +36,30 @@ class ContactData extends Component {
         axios.post('/orders.json', order )
             .then(response => {
             this.setState({loading: false})
+            this.props.history.push('/')
         });  
         event.preventDefault();
         console.log(this.props.ingredients)
     }
     render () {
+
+        let form =
+        <form>
+            <input type='text' name='name' placeholder='your Name'/>
+            <input type='email' name='email' placeholder='your Email'/>
+            <input type='text' name='city' placeholder='your City'/>
+            <input type='text' name='street' placeholder='your Street'/>
+            <input type='text' name='zipcode' placeholder='your Zipcode'/>
+            <Button clicked={this.orderHandler} buttonStyle={'Success'}>Order</Button>
+        </form>
+
+        if(this.state.loading) {
+            form = <Spinner/>
+        }
         return (
             <div className={style.ContactData}>
                 <h4>Enter you contact Data</h4>
-                <form>
-                    <input type='text' name='name' placeholder='your Name'/>
-                    <input type='email' name='email' placeholder='your Email'/>
-                    <input type='text' name='city' placeholder='your City'/>
-                    <input type='text' name='street' placeholder='your Street'/>
-                    <input type='text' name='zipcode' placeholder='your Zipcode'/>
-                    <Button clicked={this.orderHandler} buttonStyle={'Success'}>Order</Button>
-                </form>
+               {form}
             </div>
         )
     }
