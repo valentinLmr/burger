@@ -7,6 +7,7 @@ const navigationItems = (props) => (
     <ul className={styles.NavigationItems}>
         <li className={styles.NavigationItem}> <NavLink  to='/' exact activeClassName={styles.active} > BurgerBuilder </NavLink></li>
         <li className={styles.NavigationItem}> <NavLink  to='/orders' activeClassName={styles.active} > Orders</NavLink></li>
+        <li className={styles.NavigationItem}> <NavLink  to='/auth' activeClassName={styles.active} > Authentification</NavLink></li>
     </ul>
 );
 export default navigationItems
