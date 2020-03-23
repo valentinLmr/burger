@@ -4,7 +4,6 @@ const initialState = {
     loading: false,
     purchased: false
 }
-console.log(initialState)
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.PURCHASE_INIT:
@@ -18,13 +17,11 @@ const reducer = (state = initialState, action) => {
                 loading:true
             }
         case actionTypes.PURCHASES_BURGER_SUCCESS:
-            console.log(state.order)
 
             const newOrder = { 
             ...action.orderData,
             id: action.orderId
             }
-            console.log(newOrder)
             return {
                 ...state, 
                 loading: false,
