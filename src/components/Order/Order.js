@@ -3,8 +3,6 @@ import style from './Order.module.css'
 
 const order = (props) => {
 
-    console.log(props.ingredients)
-
     let ingredients = [];
     for(let ingredientName in props.ingredients) {
         ingredients.push({
@@ -14,7 +12,6 @@ const order = (props) => {
     }
 
     const ingredientOutput = ingredients.map(ing => {
-        console.log(ing)
         return <span 
                     style={{
                         textTransforma:'capitalize',
